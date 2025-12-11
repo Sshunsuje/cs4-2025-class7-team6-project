@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バーチャル自習室 - ホーム</title>
+
+    <link rel="stylesheet" href="{% static 'vs/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>バーチャル自習室</h1>
+        <p>離れていても、一緒に頑張れる場所。</p>
+    </header>
+
+    <div class="container">
+        <a href="#" class="card">
+            <h2>⏱️ 集中タイマー</h2>
+            <span>時間を記録して通知を送る</span>
+        </a>
+
+        <a href="#" class="card">
+            <h2>📌 目標宣言ボード</h2>
+            <span>今日の目標を貼り付ける</span>
+        </a>
+
+        <a href="#" class="card">
+            <h2>💬 息抜きチャット</h2>
+            <span>疲れたらここで雑談</span>
+        </a>
+
+        <a href="#" class="card">
+            <h2>🏆 学習ランキング</h2>
+            <span>みんなの頑張りを見る</span>
+        </a>
+    </div>
+
+</body>
+</html>
