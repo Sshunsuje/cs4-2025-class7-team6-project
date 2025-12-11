@@ -14,3 +14,6 @@ def ranking(request):
 
 def chat(request):
     return render(request, 'vs/chat.html')
+
+def bord(request):
+    return render(request, 'vs/bord.html')
