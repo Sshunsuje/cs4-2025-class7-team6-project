@@ -22,10 +22,11 @@
             <span>時間を記録して通知を送る</span>
         </a>
 
-        <a href="bord" class="card">
-            <h2>📌 目標宣言ボード</h2>
-            <span>今日の目標を貼り付ける</span>
-        </a>
+        <a href="{% url 'goals:board' %}" class="card">
+    <h2>目標宣言ボード</h2>
+    <span>今日の目標を貼り付ける</span>
+
+</a>
 
         <a href="#" class="card">
             <h2>💬 息抜きチャット</h2>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>目標宣言ボード</title>
+</head>
+<body>
+    <h1>目標宣言ボード</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="text" placeholder="今日の目標を入力">
+        <button type="submit">追加</button>
+    </form>
+
+    <ul>
+        {% for g in goals %}
+            <li>{{ g.text }} （{{ g.created_at|date:"H:i" }}）</li>
+        {% empty %}
+            <li>まだ目標がありません。</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">トップに戻る</a>
+</body>
+</html>
+
+
+
+
+
+
+
