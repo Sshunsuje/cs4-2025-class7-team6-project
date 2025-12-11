@@ -5,4 +5,5 @@ app_name = 'vs'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('ranking/', views.ranking, name='ranking'),
 ]
