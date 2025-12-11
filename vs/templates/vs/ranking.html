@@ -1,11 +1,73 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ランキング</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習ランキング - バーチャル自習室</title>
+    
+    <link rel="stylesheet" href="{% static 'vs/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vs/ranking.css' %}">
 </head>
 <body>
-    <h1>ランキングのページ</h1>
-    <a href="{% url 'vs:index' %}">トップに戻る</a>
+
+    <header>
+        <h1>Study Ranking</h1>
+        <p>今週の積み上げ記録</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="status-bar">
+            <span class="live-indicator" id="status-dot"></span>
+            <span id="status-text">リアルタイム集計中</span>
+        </div>
+
+        <div class="ranking-board">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 10%;">順位</th>
+                        <th class="text-left"   style="width: 60%;">ユーザー名</th>
+                        <th class="text-right"  style="width: 30%;">合計時間</th>
+                    </tr>
+                </thead>
+                <tbody id="ranking-board">
+                    {% for record in ranking_data %}
+                    <tr class="rank-{{ record.rank }}">
+                        <td class="text-center">
+                            <div class="rank-badge">{{ record.rank }}</div>
+                        </td>
+                        <td class="text-left username-cell">
+                            {{ record.username }}
+                        </td>
+                        <td class="text-right time-cell">
+                            {{ record.time }}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center" style="padding: 40px; color: #999;">
+                            現在、ランキングデータはありません。<br>
+                            学習を開始して、最初の記録を作りましょう！
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-bottom: 40px;">
+            <a href="{% url 'vs:index' %}" class="btn">
+                ← 自習室へ戻る
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        console.log("Ranking Page Loaded.");
+        // WebSocketの実装時にここに追記します
+    </script>
 </body>
 </html>
