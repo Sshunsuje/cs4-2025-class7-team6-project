@@ -12,11 +12,10 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Message',
+            name='StudyLog',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('username', models.CharField(max_length=30)),
-                ('text', models.TextField()),
+                ('minutes', models.IntegerField(default=0)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
             ],
         ),

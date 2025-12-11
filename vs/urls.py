@@ -6,6 +6,6 @@ app_name = 'vs'
 urlpatterns = [
     path('', views.index, name='index'),
     path('ranking/', views.ranking, name='ranking'),
-    path('bord/', views.ranking, name='bord'),
+    path('bord/', views.bord, name='bord'),
     path('chat/', views.chat, name='chat'),
 ]
