@@ -1,0 +1,56 @@
+<!-- timer/templates/timer/index.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集中タイマー - バーチャル自習室</title>
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" href="{% static 'timer/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1><a href="/" style="color: white; text-decoration: none;">バーチャル自習室</a></h1>
+        <p>⏱️ 集中タイマー</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card">
+            <h2>Let's Focus!</h2>
+            <div id="timer-display">00:00:00</div>
+            
+            <div id="controls">
+                <!-- onclick属性も削除し、JS側で制御しても良いですが、
+                     今回はシンプルにonclickを残したままJS関数を呼び出します -->
+                <button id="start-btn" class="btn" onclick="startTimer()">START</button>
+                <button id="stop-btn" class="btn btn-stop" onclick="stopTimer()" style="display: none;">STOP</button>
+            </div>
+            <p id="status-msg" style="height: 1.5em; color: #666;"></p>
+        </div>
+
+        <div class="card" style="text-align: left;">
+            <h3>📚 最近の学習履歴</h3>
+            <ul class="log-list">
+                {% for log in logs %}
+                    <li>{{ log.created_at|date:"Y/m/d H:i" }} - <strong>{{ log.minutes }}分</strong> 勉強しました</li>
+                {% empty %}
+                    <li style="color: #999;">まだ記録はありません。</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- 重要: JSファイルで使うためのデータ（URL）をここに埋め込む -->
+    <!-- 中に {% csrf_token %} を追加します -->
+    <div id="timer-data" data-save-url="{% url 'timer:save_log' %}" style="display: none;">
+        {% csrf_token %}
+    </div>
+
+    <!-- JavaScriptファイルの読み込み -->
+    <script src="{% static 'timer/script.js' %}"></script>
+</body>
+</body>
+</html>
