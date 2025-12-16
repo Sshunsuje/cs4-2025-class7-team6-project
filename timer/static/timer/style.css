@@ -1,0 +1,75 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+header h1 { margin: 0; font-size: 2.5rem; }
+header p { font-size: 1.2rem; opacity: 0.9; }
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#timer-display {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 20px 0;
+    font-family: monospace;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px;
+    width: 150px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.btn-stop {
+    background-color: #e53935;
+}
+.btn-stop:hover {
+    background-color: #c62828;
+}
+
+.log-list {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+}
+.log-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
