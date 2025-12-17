@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('vs.urls')),
     path('goals/', include('goals.urls')),   
     path('timer/', include('timer.urls')),
+    path('ranking/', include('ranking.urls')),
 ]

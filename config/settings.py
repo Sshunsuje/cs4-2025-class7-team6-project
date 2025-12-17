@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'vs',
     'goals',
     'timer',
+    'ranking',
 ]
 
 MIDDLEWARE = [

@@ -42,9 +42,36 @@ function startTimer() {
     statusMsg.textContent = '計測中... 頑張ってください！';
 
     console.log("WebSocket: Start notification sent (Not implemented yet)");
+
+    if (chatSocket && chatSocket.readyState === WebSocket.OPEN) {
+        chatSocket.send(JSON.stringify({
+            'type': 'study_start',  // バックエンドで識別するタイプ名
+            'message': '勉強を開始しました！' 
+        }));
+    }
 }
+// 追加しました↓↓
+function stopTimer() {
+    if (!isRunning) return;
 
+    // タイマーを止める
+    clearInterval(timerInterval);
+    isRunning = false;
 
+    // UI更新
+    startBtn.style.display = 'inline-block';
+    stopBtn.style.display = 'none';
+
+    // 経過時間を「分」に換算
+    // ※Math.max(1, ...) を使うと、1分未満でも最低「1分」として記録できます
+    // 今回は単純な切り捨て（0分もあり得る）にしています
+    const minutes = Math.floor(elapsedTime / 60000); 
+
+    statusMsg.textContent = 'お疲れ様でした！記録を保存中...';
+    
+    // 保存処理を呼び出し
+    saveRecord(minutes);
+}
 
 function saveRecord(minutes) {
     const saveUrl = timerData.dataset.saveUrl;
