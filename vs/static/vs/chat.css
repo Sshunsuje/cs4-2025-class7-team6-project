@@ -1,0 +1,94 @@
+/* 全体 */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* タイトル */
+.title {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* チャット表示エリア */
+.chat-box {
+    width: 80%;
+    max-width: 600px;
+    height: 400px;
+    margin: 0 auto 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 吹き出し */
+.bubble {
+    max-width: 75%;
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    background: #e1f0ff;
+    border-radius: 16px;
+    position: relative;
+}
+
+/* 吹き出しのしっぽ */
+.bubble::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 12px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent #e1f0ff transparent transparent;
+}
+
+/* メッセージ本文 */
+.content {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* 時刻 */
+.time {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    color: #666;
+    text-align: right;
+}
+
+/* 入力フォーム */
+.chat-form {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.chat-form input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.chat-form button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.chat-form button:hover {
+    background-color: #357ac8;
+}

@@ -1,46 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>チームチャット</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>息抜きチャット</title>
+    <link rel="stylesheet" href="{% static 'vs/chat.css' %}">
 </head>
 <body>
 
-    <header class="app-header">
-        <h1>プロジェクト名 - チームチャット</h1>
-    </header>
+<h1 class="title">💬 息抜きチャット</h1>
 
-    <div class="chat-container">
-        
-        {% for message in messages %}
-        
-            <div class="message {% if message.is_mine %}my-message{% else %}other-message{% endif %}">
-                <div class="message-author">{{ message.author.username }} <small>{{ message.timestamp|date:"H:i" }}</small></div>
-                <div class="message-content">{{ message.content }}</div>
-            </div>
+<div class="chat-box">
+    {% for message in messages %}
+        <div class="bubble">
+            <p class="content">{{ message.content }}</p>
+            <span class="time">
+                {{ message.created_at|date:"H:i" }}
+            </span>
+        </div>
+    {% endfor %}
+</div>
 
-        {% empty %}
-            <p style="text-align: center; color: #888;">まだメッセージはありません。</p>
-        {% endfor %}
-
-    </div>
-
-    <div class="input-area">
-        
-        <form method="POST" id="chat-form">
-            {% csrf_token %} 
-            
-            <input 
-                type="text" 
-                name="content" 
-                placeholder="メッセージを入力してください..." 
-                autocomplete="off" 
-                required
-            >
-            <button type="submit">送信</button>
-        </form>
-    </div>
+<form method="post" class="chat-form">
+    {% csrf_token %}
+    <input type="text" name="content" placeholder="メッセージを入力">
+    <button type="submit">送信</button>
+</form>
 
 </body>
 </html>
