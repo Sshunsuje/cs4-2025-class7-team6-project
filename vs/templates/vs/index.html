@@ -1,42 +1,84 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>バーチャル自習室 - ホーム</title>
+    <title>チャットルーム</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: #f1f1f1;
+        }
 
-    <link rel="stylesheet" href="{% static 'vs/style.css' %}">
+        .chat-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            background: #ffffff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+
+        .time {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .input-area {
+            display: flex;
+            padding: 10px;
+            background: #ddd;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 20px;
+            border: none;
+        }
+
+        .input-area button {
+            margin-left: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: #4caf50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+<div class="chat-container">
 
-    <header>
-        <h1>バーチャル自習室</h1>
-        <p>離れていても、一緒に頑張れる場所。</p>
-    </header>
-
-    <div class="container">
-        <a href="#" class="card">
-            <h2>⏱️ 集中タイマー</h2>
-            <span>時間を記録して通知を送る</span>
-        </a>
-
-        <a href="bord" class="card">
-            <h2>📌 目標宣言ボード</h2>
-            <span>今日の目標を貼り付ける</span>
-        </a>
-
-        <a href="#" class="card">
-            <h2>💬 息抜きチャット</h2>
-            <span>疲れたらここで雑談</span>
-        </a>
-
-        <a href="ranking" class="card">
-            <h2>🏆 学習ランキング</h2>
-            <span>みんなの頑張りを見る</span>
-        </a>
+    <div class="messages">
+        {% for message in messages %}
+            <div class="message">
+                {{ message.content }}
+                <div class="time">
+                    {{ message.created_at|date:"H:i" }}
+                </div>
+            </div>
+        {% endfor %}
     </div>
 
+    <form method="post" class="input-area">
+        {% csrf_token %}
+        <input type="text" name="content" placeholder="メッセージを入力">
+        <button type="submit">送信</button>
+    </form>
+
+</div>
 </body>
 </html>

@@ -2,10 +2,45 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>チャットルーム</title>
+    <title>チームチャット</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>チャットルーム</h1>
-    <a href="{% url 'vs:index' %}">トップに戻る</a>
+
+    <header class="app-header">
+        <h1>プロジェクト名 - チームチャット</h1>
+    </header>
+
+    <div class="chat-container">
+        
+        {% for message in messages %}
+        
+            <div class="message {% if message.is_mine %}my-message{% else %}other-message{% endif %}">
+                <div class="message-author">{{ message.author.username }} <small>{{ message.timestamp|date:"H:i" }}</small></div>
+                <div class="message-content">{{ message.content }}</div>
+            </div>
+
+        {% empty %}
+            <p style="text-align: center; color: #888;">まだメッセージはありません。</p>
+        {% endfor %}
+
+    </div>
+
+    <div class="input-area">
+        
+        <form method="POST" id="chat-form">
+            {% csrf_token %} 
+            
+            <input 
+                type="text" 
+                name="content" 
+                placeholder="メッセージを入力してください..." 
+                autocomplete="off" 
+                required
+            >
+            <button type="submit">送信</button>
+        </form>
+    </div>
+
 </body>
 </html>
