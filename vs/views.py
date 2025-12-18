@@ -13,7 +13,7 @@ def chat(request):
         content = request.POST.get('content')
         if content:
             Message.objects.create(content=content)
-        return redirect('chat')
+        return redirect('vs:chat')
 
     messages = Message.objects.order_by('created_at')
     return render(request, 'vs/chat.html', {
