@@ -1,0 +1,149 @@
+/* --- レイアウトの根幹：完全な中央寄せ --- */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #F0F2F5; /* 共通背景色 */
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px; /* 見やすさを考慮した幅 */
+    margin: 0 auto;   /* 左右中央 */
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 子要素を中央へ */
+}
+
+/* --- カード：ランキングボード --- */
+.ranking-board {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* 角丸の維持 */
+    margin-bottom: 30px;
+}
+
+/* --- テーブルデザイン --- */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.styled-table thead tr {
+    background: linear-gradient(135deg, #4CAF50 0%, #45A049 100%);
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th, 
+.styled-table td {
+    padding: 18px 25px;
+}
+
+/* 行の装飾 */
+.styled-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f9fff9; /* わずかな緑のホバー */
+}
+
+/* --- 順位バッジ：メタリック演出 --- */
+.rank-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: bold;
+    color: white;
+    background: #90A4AE; /* 4位以下の色 */
+    margin: 0 auto;
+}
+
+/* 1位: ゴールド */
+.rank-1 .rank-badge {
+    background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+    width: 38px;
+    height: 38px;
+    box-shadow: 0 3px 6px rgba(212, 175, 55, 0.3);
+}
+
+/* 2位: シルバー */
+.rank-2 .rank-badge {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%);
+}
+
+/* 3位: ブロンズ */
+.rank-3 .rank-badge {
+    background: linear-gradient(135deg, #CD7F32 0%, #A0522D 100%);
+}
+
+/* --- テキストスタイル --- */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.username-cell {
+    font-weight: 600;
+    color: #333333;
+    font-size: 1.05rem;
+}
+
+.time-cell {
+    font-family: 'Consolas', 'Monaco', monospace; /* 数字を揃える */
+    font-weight: 700;
+    color: #4CAF50;
+    font-size: 1.1rem;
+}
+
+/* --- ライブインジケーター（右上） --- */
+.status-bar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.live-dot {
+    height: 8px;
+    width: 8px;
+    background-color: #ff5252;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 82, 82, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0); }
+}
+
+/* 共通ボタン（微調整） */
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #45A049;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

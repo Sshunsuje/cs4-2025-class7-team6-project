@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>目標宣言ボード</title>
+  <link rel="stylesheet" href="{% static 'goals/board.css' %}">
+</head>
+<body>
+<header>
+  <h1>目標宣言ボード</h1>
+  <p>今日の目標を貼り付けて、みんなで頑張ろう。</p>
+</header>
+<div class="container">
+  <!-- 追加＆フィルタ -->
+  <div class="card">
+    <form method="post" class="add-form">
+      {% csrf_token %}
+      <input type="text" name="text" placeholder="例：英語を30分やる" maxlength="200" required>
+      <button class="btn" type="submit">追加</button>
+      <a class="btn btn-secondary" href="{% url 'vs:index' %}">ホームに戻る</a>
+    </form>
+    <div class="filters">
+      <div class="filter-group">
+        <a class="tab {% if status == 'todo' %}active{% endif %}" href="?status=todo">未完了</a>
+        <a class="tab {% if status == 'done' %}active{% endif %}" href="?status=done">完了済み</a>
+      </div>
+    </div>
+  </div>
+  <!-- 一覧 -->
+  <div class="card">
+    <h2 class="section-title">目標一覧</h2>
+    {% if goals %}
+      <div class="goal-list">
+        {% for g in goals %}
+          <div class="goal-item {% if g.is_done %}done{% endif %}">
+            <div class="goal-main">
+              <div class="goal-text">{{ g.text }}</div>
+              <div class="goal-meta">{{ g.created_at|date:"Y/m/d H:i" }}</div>
+            </div>
+            <div class="goal-actions">
+              <form method="post" action="{% url 'goals:like' g.id %}">
+                {% csrf_token %}
+                <button class="pill" type="submit">👍 {{ g.likes }}</button>
+              </form>
+              <form method="post" action="{% url 'goals:done' g.id %}">
+                {% csrf_token %}
+                <button class="pill {% if g.is_done %}pill-undo{% else %}pill-done{% endif %}" type="submit">
+                  {% if g.is_done %}戻す{% else %}完了{% endif %}
+                </button>
+              </form>
+              {% if g.is_done %}
+              <form method="post" action="{% url 'goals:delete' g.id %}"
+                    onsubmit="return confirm('本当にこの目標を削除しますか？');">
+                {% csrf_token %}
+                <button class="pill pill-delete" type="submit">消去</button>
+              </form>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty">まだ目標がありません。</p>
+    {% endif %}
+  </div>
+</div>
+</body>
+</html>
+
+
+
+

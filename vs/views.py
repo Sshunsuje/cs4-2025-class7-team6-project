@@ -1,21 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Message
 
 def index(request):
     return render(request, 'vs/index.html')
 
 def ranking(request):
-    return render(request, 'vs/ranking.html')
+    return render(request, 'ranking/index.html')
 
-def ranking(request):
-    return render(request, 'vs/bord.html')
-
-
-def bord(request):
-    return render(request, 'vs/bord.html')
-
-from django.shortcuts import render, redirect
-from .models import Message
 
 def chat(request):
     if request.method == 'POST':
@@ -28,3 +19,9 @@ def chat(request):
     return render(request, 'vs/chat.html', {
         'messages': messages
     })
+
+def timer(request):
+    return render(request, 'timer/index.html')
+
+def goals(request):
+    return render(request, 'goals/board.html')

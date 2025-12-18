@@ -1,0 +1,44 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'ranking/style.css' %}">
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習ランキング - バーチャル自習室</title>
+    <link rel="stylesheet" href="{% static 'ranking/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Study Ranking</h1>
+        <p>今週の積み上げ記録</p>
+    </header>
+    <div class="container">
+        <div class="status-bar">
+            <span class="live-indicator"></span> リアルタイム集計中
+        </div>
+        <div class="ranking-board">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th class="text-center">順位</th>
+                        <th class="text-left">ユーザー名</th>
+                        <th class="text-right">合計時間</th>
+                    </tr>
+                </thead>
+                <tbody id="ranking-board">
+                    {% for record in ranking_data %}
+                    <tr class="rank-{{ record.rank }}">
+                        <td class="text-center"><div class="rank-badge">{{ record.rank }}</div></td>
+                        <td class="text-left username-cell">{{ record.username }}</td>
+                        <td class="text-right time-cell">{{ record.time }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-bottom: 40px;"><a href="/" class="btn">← 自習室へ戻る</a></div>
+    </div>
+</body>
+</html>
