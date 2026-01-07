@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from .models import Message
+=======
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
+
+>>>>>>> 5eb4926 (ベースページの追加)
 
 def index(request):
     return render(request, 'vs/index.html')
@@ -7,6 +16,7 @@ def index(request):
 def ranking(request):
     return render(request, 'ranking/index.html')
 
+<<<<<<< HEAD
 
 def chat(request):
     if request.method == 'POST':
@@ -25,3 +35,7 @@ def timer(request):
 
 def goals(request):
     return render(request, 'goals/board.html')
+=======
+def ranking(request):
+    return render(request, 'vs/bord.html')
+>>>>>>> 5eb4926 (ベースページの追加)
