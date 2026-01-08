@@ -25,3 +25,4 @@ def timer(request):
 
 def goals(request):
     return render(request, 'goals/board.html')
+
