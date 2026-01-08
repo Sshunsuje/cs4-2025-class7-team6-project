@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>息抜きチャット</title>
     <link rel="stylesheet" href="{% static 'vs/chat.css' %}">
-
 </head>
 <body>
 
@@ -14,13 +13,13 @@
     <div class="chat-box">
         {% for message in messages %}
             <div class="bubble {% if message.name == my_name %}me{% else %}other{% endif %}">
-            
+                
                 <p class="name">{{ message.name }}</p>
 
                 <p class="content">{{ message.content }}</p>
 
                 <span class="time">
-                    {{ message.created_at|date:"H:i" }}
+                    {{ message.created_at|date:"m/d(D) H:i" }}
                 </span>
 
             </div>
