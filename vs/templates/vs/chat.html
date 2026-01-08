@@ -10,7 +10,7 @@
 
 <h1 class="title">💬 息抜きチャット</h1>
 
-    <div class="chat-box">
+    <div class="chat-box" id="chat-box">
         {% for message in messages %}
             <div class="bubble {% if message.name == my_name %}me{% else %}other{% endif %}">
                 
@@ -35,5 +35,13 @@
     <div class="back-link-container">
         <a href="{% url 'vs:index' %}" class="back-btn">← 戻る</a>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatBox = document.getElementById('chat-box');
+            // チャットボックスの一番下までスクロールさせる
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+    </script>
 </body>
 </html>
