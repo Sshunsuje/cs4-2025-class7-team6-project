@@ -15,7 +15,8 @@
 <div class="container">
   <!-- 追加＆フィルタ -->
   <div class="card">
-    <form method="post" class="add-form">
+    <!-- action="" にして “今見てるURL” に必ずPOSTさせる（/goals/ or /goals/?status=todo など） -->
+    <form method="post" action="" class="add-form">
       {% csrf_token %}
       <input type="text" name="text" placeholder="例：英語を30分やる" maxlength="200" required>
       <button class="btn" type="submit">追加</button>
@@ -51,8 +52,9 @@
                 </button>
               </form>
               {% if g.is_done %}
-              <form method="post" action="{% url 'goals:delete' g.id %}"
-                    onsubmit="return confirm('本当にこの目標を削除しますか？');">
+              <form method="post"
+                    action="{% url 'goals:delete' g.id %}"
+                    onsubmit="return confirm('本当に削除しますか？');">
                 {% csrf_token %}
                 <button class="pill pill-delete" type="submit">消去</button>
               </form>
@@ -68,7 +70,3 @@
 </div>
 </body>
 </html>
-
-
-
-
