@@ -16,7 +16,6 @@ def index(request):
 def ranking(request):
     return render(request, 'ranking/index.html')
 
-<<<<<<< HEAD
 
 def chat(request):
     if request.method == 'POST':
@@ -35,7 +34,4 @@ def timer(request):
 
 def goals(request):
     return render(request, 'goals/board.html')
-=======
-def ranking(request):
-    return render(request, 'vs/bord.html')
->>>>>>> 5eb4926 (ベースページの追加)
+
