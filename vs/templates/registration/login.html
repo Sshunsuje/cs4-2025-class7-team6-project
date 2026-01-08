@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン - バーチャル自習室</title>
+    <link rel="stylesheet" href="{% static 'vs/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>ログイン</h1>
+        <p>おかえりなさい！学習を再開しましょう。</p>
+    </header>
+    <div class="container" style="display: block; max-width: 500px;">
+        <div class="card" style="height: auto; padding: 30px; text-align: left;">
+            <form method="post">
+                {% csrf_token %}
+                <div style="margin-bottom: 15px;">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin: 0;">ログイン</button>
+            </form>
+            <div style="margin-top: 20px; text-align: center;">
+                <p>アカウントをお持ちでないですか？ <a href="{% url 'vs:signup' %}" style="color: #4CAF50;">サインアップ</a></p>
+                <a href="{% url 'vs:index' %}" style="color: #666; font-size: 0.9rem;">トップに戻る</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
