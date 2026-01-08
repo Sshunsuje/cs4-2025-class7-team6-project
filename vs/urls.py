@@ -10,4 +10,6 @@ urlpatterns = [
     path('chat/', views.chat, name='chat'),
     path('timer/', views.timer, name='timer'),
     path('goals/', views.goals, name='goals'),
+    path('edit/<int:pk>/', views.edit_message, name='edit'),
+    path('delete/<int:pk>/', views.delete_message, name='delete'),
 ]
