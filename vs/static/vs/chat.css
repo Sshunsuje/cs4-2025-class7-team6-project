@@ -133,3 +133,62 @@ body {
     font-weight: bold;
     transition: background-color 0.3s;
 }
+
+/* 既存のCSSの末尾に追加 */
+
+/* 編集メニューの基本（普段は隠す） */
+.edit-menu {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* 吹き出しにホバーした時だけ表示 */
+.bubble:hover .edit-menu {
+    opacity: 1;
+}
+
+/* 小さなテキストリンク風ボタン */
+.btn-text {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 11px;
+    color: rgba(0,0,0,0.4);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.bubble.me .btn-text {
+    color: rgba(255,255,255,0.7);
+}
+
+.btn-text:hover {
+    text-decoration: underline;
+}
+
+.btn-text.delete {
+    color: #ff4d4d;
+}
+
+/* 編集用インラインフォーム */
+.inline-edit-form {
+    display: flex;
+    gap: 5px;
+    margin: 5px 0;
+}
+
+.inline-edit-form input {
+    flex: 1;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+.inline-edit-form button {
+    font-size: 10px;
+    padding: 2px 8px;
+    cursor: pointer;
+}

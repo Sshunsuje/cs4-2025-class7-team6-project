@@ -9,39 +9,40 @@
 <body>
 
 <h1 class="title">日記</h1>
+<div class="chat-box" id="chat-box">
+    {% for message in messages %}
+        <div class="bubble {% if message.name == my_name %}me{% else %}other{% endif %}">
+            <p class="name">{{ message.name }}</p>
+            
+            <p class="content" id="content-{{ message.id }}">{{ message.content }}</p>
 
-    <div class="chat-box" id="chat-box">
-        {% for message in messages %}
-            <div class="bubble {% if message.name == my_name %}me{% else %}other{% endif %}">
-                
-                <p class="name">{{ message.name }}</p>
-
-                <p class="content">{{ message.content }}</p>
-
-                <span class="time">
-                    {{ message.created_at|date:"m/d(D) H:i" }}
-                </span>
-
+            <div class="edit-menu">
+                <button onclick="showEditForm('{{ message.id }}')" class="btn-text">編集</button>
+                <a href="{% url 'vs:delete' message.id %}" onclick="return confirm('削除しますか？')" class="btn-text delete">取消</a>
             </div>
-        {% endfor %}
-    </div>
 
-    <form method="post" class="chat-form">
-        {% csrf_token %}
-        <input type="text" name="content" placeholder="メッセージを入力">
-        <button type="submit">送信</button>
-    </form>
+            <span class="time">
+                {{ message.created_at|date:"m/d(D) H:i" }}
+            </span>
+        </div>
+    {% endfor %}
+</div>
 
-    <div class="back-link-container">
-        <a href="{% url 'vs:index' %}" class="back-btn">← 戻る</a>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatBox = document.getElementById('chat-box');
-            // チャットボックスの一番下までスクロールさせる
-            chatBox.scrollTop = chatBox.scrollHeight;
-        });
-    </script>
+<script>
+    function showEditForm(id) {
+        const contentP = document.getElementById(`content-${id}`);
+        const currentText = contentP.innerText;
+        
+        // 投稿内容をそのまま編集フォームに置き換える
+        contentP.innerHTML = `
+            <form method="post" action="/vs/edit/${id}/" class="inline-edit-form">
+                {% csrf_token %}
+                <input type="text" name="content" value="${currentText}" autofocus>
+                <button type="submit">保存</button>
+                <button type="button" onclick="location.reload()">×</button>
+            </form>
+        `;
+    }
+</script>
 </body>
 </html>
