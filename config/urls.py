@@ -22,5 +22,6 @@ urlpatterns = [
     path('goals/', include('goals.urls')),   
     path('timer/', include('timer.urls')),
     path('ranking/', include('ranking.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', include('vs.urls')),
 ]

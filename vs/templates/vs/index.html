@@ -14,6 +14,18 @@
     <header>
         <h1>バーチャル自習室</h1>
         <p>離れていても、一緒に頑張れる場所。</p>
+        <div style="margin-top: 15px;">
+            {% if user.is_authenticated %}
+                <span style="color: white; margin-right: 10px;">{{ user.username }} さん</span>
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: 1px solid white; color: white; padding: 5px 10px; cursor: pointer; border-radius: 5px;">ログアウト</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" style="color: white; text-decoration: none; border: 1px solid white; padding: 5px 12px; border-radius: 5px; margin-right: 5px;">ログイン</a>
+                <a href="{% url 'vs:signup' %}" style="color: white; text-decoration: none; background: #45A049; padding: 6px 12px; border-radius: 5px;">サインアップ</a>
+            {% endif %}
+        </div>
     </header>
 
     <div class="container">

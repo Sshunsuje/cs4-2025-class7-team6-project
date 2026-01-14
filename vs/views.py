@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Message
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
 
 def index(request):
     return render(request, 'vs/index.html')
@@ -38,6 +41,10 @@ def edit_message(request, pk):
             message.save()
     return redirect('vs:chat')
 
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
 # --- 追加: 削除機能 ---
 def delete_message(request, pk):
     message = get_object_or_404(Message, pk=pk)
