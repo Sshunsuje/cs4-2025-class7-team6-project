@@ -10,4 +10,5 @@ urlpatterns = [
     path('chat/', views.chat, name='chat'),
     path('timer/', views.timer, name='timer'),
     path('goals/', views.goals, name='goals'),
+    path('signup/', views.SignUpView.as_view(), name='signup'),
 ]

@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Message
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
 
 def index(request):
     return render(request, 'vs/index.html')
@@ -26,3 +29,7 @@ def timer(request):
 def goals(request):
     return render(request, 'goals/board.html')
 
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
