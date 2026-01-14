@@ -19,9 +19,12 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('vs.urls')),
     path('goals/', include('goals.urls')),   
     path('timer/', include('timer.urls')),
     path('ranking/', include('ranking.urls')),
+<<<<<<< HEAD
     path('accounts/', include('django.contrib.auth.urls')),
+=======
+    path('', include('vs.urls')),
+>>>>>>> 814fb9987d742443eecb4db4569cb2958c9c0c89
 ]
