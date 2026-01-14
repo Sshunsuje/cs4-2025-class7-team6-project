@@ -41,15 +41,12 @@ def edit_message(request, pk):
             message.save()
     return redirect('vs:chat')
 
-<<<<<<< HEAD
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
-=======
 # --- 追加: 削除機能 ---
 def delete_message(request, pk):
     message = get_object_or_404(Message, pk=pk)
     message.delete()
     return redirect('vs:chat')
->>>>>>> 814fb9987d742443eecb4db4569cb2958c9c0c89
